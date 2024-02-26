@@ -1,0 +1,108 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeFile="Kullanicilar.aspx.cs" Inherits="Default2" %>
+
+<%@ Register assembly="DevExpress.Web.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <p>
+        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
+            DataSourceID="SqlDataSource1" KeyFieldName="ID" Width="829px" SkinID="3" 
+            EnableTheming="True">
+            <ClientSideEvents/>
+            <Columns>
+                <dx:GridViewCommandColumn VisibleIndex="0" ButtonType="Image" FixedStyle="Left" 
+                    Width="60px" Caption="İşlemler">
+                    <EditButton Visible="True">
+                        <Image AlternateText="Düzenle" Url="~/img/duzenle.png">
+                        </Image>
+                    </EditButton>
+                    <NewButton Visible="True">
+                        <Image AlternateText="Yeni" ToolTip="Yeni" Url="~/img/yeni.png">
+                        </Image>
+                    </NewButton>
+                    <DeleteButton Visible="True">
+                        <Image AlternateText="Sil" Url="~/img/sil.png">
+                            <SpriteProperties Left="20px" />
+                        </Image>
+                    </DeleteButton>
+                    <CancelButton>
+                        <Image AlternateText="Vazgeç" Url="~/img/iptal.png">
+                        </Image>
+                    </CancelButton>
+                    <UpdateButton>
+                        <Image AlternateText="Kaydet" ToolTip="Kaydet" Url="~/img/kaydet.png">
+                        </Image>
+                    </UpdateButton>
+                    <HeaderStyle HorizontalAlign="Center" />
+                </dx:GridViewCommandColumn>
+                <dx:GridViewDataTextColumn FieldName="KullaniciKodu" VisibleIndex="1" 
+                    Width="40px">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="AdiSoyadi" VisibleIndex="2" Width="100px">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="KullaniciAdi" VisibleIndex="3" 
+                    Width="60px">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="Sifre" VisibleIndex="4" Width="60px">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="Email" VisibleIndex="5" Width="120px">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataCheckColumn FieldName="Aktif" VisibleIndex="9">
+                </dx:GridViewDataCheckColumn>
+                <dx:GridViewDataTextColumn FieldName="CepTel" VisibleIndex="6" Width="120px">
+                    <PropertiesTextEdit>
+                        <MaskSettings Mask="(999) 000-0000" />
+                    </PropertiesTextEdit>
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="Fax" VisibleIndex="7" Width="120px">
+                    <PropertiesTextEdit>
+                        <MaskSettings Mask="(999) 000-0000" />
+                    </PropertiesTextEdit>
+                </dx:GridViewDataTextColumn>
+            </Columns>
+            <SettingsBehavior ConfirmDelete="True" AllowFocusedRow="True" />
+            <SettingsEditing Mode="Inline" />
+            <Settings ShowTitlePanel="True" />
+            <SettingsText ConfirmDelete="Silmek İstediğinize Emin misiniz?" 
+                Title="Kullanıcı Tanımları" />
+            <SettingsLoadingPanel Mode="ShowOnStatusBar" />
+            <SettingsPopup>
+                <EditForm AllowResize="True" Width="400px" />
+            </SettingsPopup>
+        </dx:ASPxGridView>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:BlaserTeklifCS %>" 
+            InsertCommand="INSERT INTO tblKullanicilar(KullaniciKodu, AdiSoyadi, KullaniciAdi, Sifre, Email, CepTel, Fax, Aktif) VALUES (@KullaniciKodu, @AdiSoyadi, @KullaniciAdi, @Sifre, @Email, @CepTel, @Fax, @Aktif)" 
+            SelectCommand="SELECT * FROM [tblKullanicilar]" 
+            
+            
+            UpdateCommand="UPDATE tblKullanicilar SET KullaniciKodu = @KullaniciKodu, AdiSoyadi = @AdiSoyadi, KullaniciAdi = @KullaniciAdi, Sifre = @Sifre, Email = @Email, CepTel = @CepTel, Fax = @Fax, Aktif = @Aktif WHERE (ID = @ID)" 
+            DeleteCommand="DELETE FROM tblKullanicilar WHERE (ID = @ID)">
+            <DeleteParameters>
+                <asp:Parameter Name="ID" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="KullaniciKodu" />
+                <asp:Parameter Name="AdiSoyadi" />
+                <asp:Parameter Name="KullaniciAdi" />
+                <asp:Parameter Name="Sifre" />
+                <asp:Parameter DefaultValue="" Name="Email" />
+                <asp:Parameter Name="CepTel" />
+                <asp:Parameter Name="Fax" />
+                <asp:Parameter DefaultValue="1" Name="Aktif" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="KullaniciKodu" />
+                <asp:Parameter Name="AdiSoyadi" />
+                <asp:Parameter Name="KullaniciAdi" />
+                <asp:Parameter Name="Sifre" />
+                <asp:Parameter Name="Email" />
+                <asp:Parameter Name="CepTel" />
+                <asp:Parameter Name="Fax" />
+                <asp:Parameter Name="Aktif" />
+                <asp:Parameter Name="ID" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+    </p>
+</asp:Content>
+

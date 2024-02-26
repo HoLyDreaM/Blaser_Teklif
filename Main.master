@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Main.master.cs" Inherits="Main" %>
+<%@ Register assembly="DevExpress.Web.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head runat="server">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Blaser Web Sipariş</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+<% if (DesignMode){ %>
+    <script src="ASPxScriptIntelliSense.js" type="text/javascript"></script>
+<% } %>
+
+<form id="form1" runat="server">
+  <header>
+    <div id="logo" runat="server"></div>
+    <div id="kullaniciBilgileri" runat="server">
+        <label><strong>Kullanıcı : </strong> </label><label id="lblKullanici" runat=server></label>
+        <br/>
+        <label><strong>Tarih&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> </label><label id="lblTarih" runat=server></label>
+      </div>
+    <nav>
+      <ul class="nav">
+        <li id="menuTeklif" runat =server><a href="Teklif.aspx">Teklif İşlemleri</a></li>
+        <li id="menuSevk" runat =server><a href="Sevk.aspx">Sevk İşlemi</a></li>
+        <li id="menuWeb" runat =server><a href="WebSiparisi.aspx">Web Siparişi</a></li>
+
+        <li class="dropdown" id="menuRaporlar" runat ="server">
+          <a href="#">Raporlar</a>
+          <ul class="large">
+            <li ><a href="Kullanicilar.aspx">Rapor 1</a></li>
+            <li><a href="index.html">Rapor 2</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown" id="menuTanimlar" runat ="server">
+          <a href="#">Tanımlar</a>
+          <ul class="large">
+            <li ><a href="Kullanicilar.aspx">Kullanıcı Tanımları</a></li>
+            <li ><a href="FormAciklamalari.aspx">Form Açıklamaları</a></li>
+            <li ><a href="EvrakSeriNoTanimlari.aspx">Evrak Seri-No Tanımları</a></li>
+          </ul>
+        </li>
+                
+      </ul>
+    </nav>
+  </header>
+
+  <section class="about">
+        <div>
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">	
+            </asp:ContentPlaceHolder>
+        </div>
+  </section>
+
+  <footer></footer></form>
+</body>
+</html>
+ 

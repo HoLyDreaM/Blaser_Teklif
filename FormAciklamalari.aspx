@@ -1,0 +1,104 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeFile="FormAciklamalari.aspx.cs" Inherits="Default2" %>
+
+<%@ Register assembly="DevExpress.Web.v21.2, Version=21.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+
+
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" Height="98px" 
+        Width="697px" HeaderText="Rapor Alt-Üst Bilgileri">
+        <HeaderStyle BackColor="#999999" Font-Bold="False" Font-Size="Medium" 
+            ForeColor="White" HorizontalAlign="Center" />
+        <PanelCollection>
+<dx:PanelContent runat="server" SupportsDisabledAttribute="True">
+    <br />
+    <asp:Label ID="Label1" runat="server" Text="Rapor Üst Bilgileri"></asp:Label>
+    <dx:ASPxTextBox ID="txtUstBilgi1" runat="server" Width="100%" Height="16px">
+    </dx:ASPxTextBox>
+    <dx:ASPxTextBox ID="txtUstBilgi2" runat="server" Width="100%" Height="16px">
+    </dx:ASPxTextBox>
+    <dx:ASPxTextBox ID="txtUstBilgi3" runat="server" Width="100%">
+    </dx:ASPxTextBox>
+    <br />
+    <asp:Label ID="Label2" runat="server" Text="Rapor Alt Bilgileri"></asp:Label>
+    <dx:ASPxTextBox ID="txtAltBilgi1" runat="server" Height="16px" Width="100%">
+    </dx:ASPxTextBox>
+    <dx:ASPxTextBox ID="txtAltBilgi2" runat="server" Height="16px" Width="100%">
+    </dx:ASPxTextBox>
+    <dx:ASPxTextBox ID="txtAltBilgi3" runat="server" Height="16px" Width="100%">
+    </dx:ASPxTextBox>
+    <dx:ASPxButton ID="btnKaydet" runat="server" Height="17px" Text="Kaydet" 
+        Width="91px" OnClick="btnKaydet_Click">
+        <Image Url="~/img/kaydet.png">
+        </Image>
+    </dx:ASPxButton>
+            </dx:PanelContent>
+</PanelCollection>
+    </dx:ASPxRoundPanel>
+    <br />
+    <dx:ASPxGridView ID="ASPxGridView2" runat="server" 
+    AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" 
+    KeyFieldName="ID" Width="700px">
+        <Columns>
+            <dx:GridViewCommandColumn ButtonType="Image" VisibleIndex="0" Width="60px">
+                <EditButton Visible="True">
+                    <Image Url="~/img/duzenle.png">
+                    </Image>
+                </EditButton>
+                <NewButton Visible="True">
+                    <Image Url="~/img/yeni.png">
+                    </Image>
+                </NewButton>
+                <DeleteButton Visible="True">
+                    <Image Url="~/img/sil.png">
+                    </Image>
+                </DeleteButton>
+                <CancelButton>
+                    <Image Url="~/img/iptal.png">
+                    </Image>
+                </CancelButton>
+                <UpdateButton>
+                    <Image Url="~/img/kaydet.png">
+                    </Image>
+                </UpdateButton>
+            </dx:GridViewCommandColumn>
+            <dx:GridViewDataTextColumn FieldName="Aciklama" ShowInCustomizationForm="True" 
+                VisibleIndex="1">
+            </dx:GridViewDataTextColumn>
+        </Columns>
+        <SettingsBehavior ConfirmDelete="True" />
+        <SettingsEditing Mode="Inline" />
+        <Settings ShowTitlePanel="True" />
+        <SettingsText ConfirmDelete="Satırı Silmek İstediğinize Emin misiniz?" 
+            Title="Ödeme Şekli Açıklama Tanımları" />
+        <Styles>
+            <HeaderPanel Font-Bold="False" Font-Italic="False">
+            </HeaderPanel>
+        </Styles>
+</dx:ASPxGridView>
+    <br />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+    ConflictDetection="CompareAllValues" 
+    ConnectionString="<%$ ConnectionStrings:BlaserTeklifCS %>" 
+    DeleteCommand="DELETE FROM [tblFormAciklamalari_OdemeSekli] WHERE [ID] = @original_ID AND (([Aciklama] = @original_Aciklama) OR ([Aciklama] IS NULL AND @original_Aciklama IS NULL))" 
+    InsertCommand="INSERT INTO [tblFormAciklamalari_OdemeSekli] ([Aciklama]) VALUES (@Aciklama)" 
+    OldValuesParameterFormatString="original_{0}" 
+    SelectCommand="SELECT * FROM [tblFormAciklamalari_OdemeSekli]" 
+    UpdateCommand="UPDATE [tblFormAciklamalari_OdemeSekli] SET [Aciklama] = @Aciklama WHERE [ID] = @original_ID AND (([Aciklama] = @original_Aciklama) OR ([Aciklama] IS NULL AND @original_Aciklama IS NULL))">
+        <DeleteParameters>
+            <asp:Parameter Name="original_ID" Type="Int32" />
+            <asp:Parameter Name="original_Aciklama" Type="String" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="Aciklama" Type="String" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="Aciklama" Type="String" />
+            <asp:Parameter Name="original_ID" Type="Int32" />
+            <asp:Parameter Name="original_Aciklama" Type="String" />
+        </UpdateParameters>
+</asp:SqlDataSource>
+</asp:Content>
+
